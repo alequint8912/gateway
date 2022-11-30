@@ -1,0 +1,30 @@
+{
+  "name": "gateway",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www",
+    "test": "mocha 'test/**/*.js' --exit"
+  },
+  "dependencies": {
+    "@hapi/boom": "^10.0.0",
+    "@hapi/joi": "^17.1.1",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "mongoose": "^6.7.4",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.20",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.1.0",
+    "proxyquire": "^2.1.3",
+    "sinon": "^15.0.0",
+    "supertest": "^6.3.1"
+  }
+}
