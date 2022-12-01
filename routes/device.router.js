@@ -3,6 +3,7 @@ const DeviceService = require("../services/device.service");
 const {
   validationHandler,
   createSchema,
+  existId,
 } = require("../utils/middleware/validationHandler");
 
 const {
@@ -31,6 +32,7 @@ const deviceAPI = (app) => {
   router.get(
     "/:deviceID",
     validationHandler(createSchema("deviceID", idSchema), "params"),
+    existId("deviceID", "device", "params"),
     async (req, res, next) => {
       const { deviceID } = req.params;
       const device = await deviceService.getDeviceById(deviceID);

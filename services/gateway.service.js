@@ -29,7 +29,9 @@ class GatewayService {
 
   async removeDevice(gatewayId, deviceId) {
     const gateway = await GatewayModel.findById(gatewayId);
-    const devices = gateway.devices.filter((item) => item !== deviceId);
+    const devices = gateway.devices.filter(
+      (item) => item.toString() !== deviceId
+    );
     gateway.devices = devices;
     const savedGateway = await gateway.save({ returnDocument: "after" });
 

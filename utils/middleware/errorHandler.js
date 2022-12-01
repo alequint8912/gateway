@@ -31,16 +31,10 @@ function errorHandler(error, req, res, next) {
   } = error;
 
   res.status(statusCode);
-  res.json(
-    withErrorStack(
-      {
-        ...payload,
-        ...(data?.details && { details: data.details }),
-        ...(data?.errorCode && { errorCode: data.errorCode }),
-      },
-      error.stack
-    )
-  );
+  res.json({
+    ...payload,
+    ...(data?.errorCode && { errorCode: data.errorCode }),
+  });
 }
 
 module.exports = {

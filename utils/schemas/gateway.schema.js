@@ -5,30 +5,29 @@ const idSchema = joi
   .string()
   .regex(/^[0-9a-fA-F]{24}$/)
   .message("Gateway ID is not valid!");
-//const serialNumberSchema = joi.string()
 const nameSchema = joi.string();
 const addressSchema = joi
   .string()
   .regex(
     /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
   );
-//const gatewayDevicesSchema = joi.array().items(gatewayIdSchema)
 
 const createGatewayValidationSchema = joi.object({
   name: nameSchema.required(),
-  address: addressSchema.required(),
+  address: addressSchema.message("Invalid IP address!").required(),
 });
 
-const deleteGatewayValidation = () => async (req, res, next) => {
-  const { gatewayID } = req.params;
-  const gateway = await GatewayModel.findById(gatewayID);
-
-  if (!gateway) next(boom.badRequest(`Gateway does not exist!`));
-  else next();
-};
+const addDeviceValidationSchema = joi.object({
+  action: joi.string().valid("add", "remove").required(),
+  deviceID: joi
+    .string()
+    .regex(/^[0-9a-fA-F]{24}$/)
+    .message("Device ID is not valid!")
+    .required(),
+});
 
 module.exports = {
   createGatewayValidationSchema,
-  deleteGatewayValidation,
+  addDeviceValidationSchema,
   idSchema,
 };
