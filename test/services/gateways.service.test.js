@@ -39,8 +39,6 @@ describe("services - gateways", () => {
       const result = await gatewaysService.getGatewayByID(
         "63877a26e3ed08ef300d50c1"
       );
-      console.log("GATEWAY ", result);
-
       const expected = gatewaysMocks[gatewaysMocks.length - 1];
       assert.deepEqual(result, expected);
     });

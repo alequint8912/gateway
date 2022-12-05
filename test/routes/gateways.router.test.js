@@ -28,9 +28,11 @@ describe("routes - gateways", () => {
     });
   });
 
-  describe("GET /gateways/63877a26e3ed08ef300d50c1", () => {
+  describe("GET /gateways/validId", () => {
     it("should respond with status code 200 when valid id is provided", (done) => {
-      request.get("/gateways/63877a26e3ed08ef300d50c1").expect(200, done);
+      request.get("/gateways/63877a1ee3ed08ef300d50bf").expect(200);
+
+      done();
     });
   });
 });
