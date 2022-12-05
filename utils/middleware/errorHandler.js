@@ -12,8 +12,6 @@ function logErrors(error, req, res, next) {
 }
 
 function wrapErrors(error, req, res, next) {
-  console.log("ERROR WRAP: ", error);
-
   if (!error.isBoom) {
     next(boom.badImplementation(error));
   }
@@ -23,8 +21,6 @@ function wrapErrors(error, req, res, next) {
 
 // eslint-disable-next-line no-unused-vars
 function errorHandler(error, req, res, next) {
-  console.log("ERROR HANDLER: ", error);
-
   const {
     output: { statusCode, payload },
     data,

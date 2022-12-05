@@ -7,7 +7,7 @@ const {
 } = require("../utils/middleware/validationHandler");
 
 const {
-  createDeviceValidationSchema,
+  createDeviceValidation,
   idSchema,
 } = require("../utils/schemas/device.schema");
 
@@ -23,6 +23,7 @@ const deviceAPI = (app) => {
 
       res.status(200).json({
         data: devices,
+        message: "devices listed!"
       });
     } catch (error) {
       next(error);
@@ -32,7 +33,7 @@ const deviceAPI = (app) => {
   router.get(
     "/:deviceID",
     validationHandler(createSchema("deviceID", idSchema), "params"),
-    existId("deviceID", "device", "params"),
+    //existId("deviceID", "device", "params"),
     async (req, res, next) => {
       const { deviceID } = req.params;
       const device = await deviceService.getDeviceById(deviceID);
@@ -45,13 +46,13 @@ const deviceAPI = (app) => {
 
   router.post(
     "/",
-    validationHandler(createDeviceValidationSchema),
+    createDeviceValidation(),
     async (req, res, next) => {
-      const { vendor, createDate, status } = req.body;
+      const { vendor, createdDate, status } = req.body;
 
       const device = await deviceService.createDevice(
         vendor,
-        createDate,
+        createdDate,
         status
       );
 

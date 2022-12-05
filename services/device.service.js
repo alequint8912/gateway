@@ -1,4 +1,4 @@
-const { DeviceModel, deviceStatus } = require("../models/device.model");
+const DeviceModel = require("../models/device.model");
 
 class DeviceService {
   async getDevices() {

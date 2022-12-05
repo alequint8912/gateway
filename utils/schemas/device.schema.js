@@ -1,5 +1,6 @@
 const joi = require("@hapi/joi");
-const { DeviceModel, deviceStatus } = require("../../models/device.model");
+const boom = require("@hapi/boom");
+const DeviceModel = require("../../models/device.model");
 
 const idSchema = joi
   .string()
@@ -9,19 +10,39 @@ const idSchema = joi
 const vendorSchema = joi.string();
 const createdDateSchema = joi
   .string()
-  .regex(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/)
+  .regex(/^\d{4}-\d{2}-\d{2}$/)
   .message("Date must be yyyy-mm-dd format");
 const statusSchema = joi
   .string()
-  .valid(deviceStatus.online, deviceStatus.offline);
+  .valid('online', 'offline');
 
 const createDeviceValidationSchema = joi.object({
-  vendor: vendorSchema,
-  createdDate: createdDateSchema,
-  status: statusSchema,
+  vendor: vendorSchema.required(),
+  createdDate: createdDateSchema.required(),
+  status: statusSchema.required(),
 });
+
+const createDeviceValidation = () => {
+  return (req, res, next) => {
+    const { vendor, createdDate, status } = req.body;
+    const { error } = createDeviceValidationSchema.validate({
+      vendor,
+      createdDate,
+      status,
+    });
+
+    if (error) {
+      next(boom.badRequest(error.details[0].message));
+    } else {
+      const timestamp = new Date(createdDate).getTime();
+      if (typeof timestamp !== "number" || Number.isNaN(timestamp)) {
+        next(boom.badRequest("Invalid date!"));
+      } else next();
+    }
+  };
+};
 
 module.exports = {
   idSchema,
-  createDeviceValidationSchema,
+  createDeviceValidation,
 };

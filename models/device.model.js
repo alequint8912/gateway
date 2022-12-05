@@ -18,7 +18,4 @@ const deviceSchema = new Schema({
 
 const DeviceModel = mongoose.model("Device", deviceSchema);
 
-module.exports = {
-  DeviceModel,
-  deviceStatus,
-};
+module.exports = DeviceModel;

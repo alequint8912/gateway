@@ -34,7 +34,6 @@ const gatewayAPI = (app) => {
   router.get(
     "/:gatewayID",
     validationHandler(createSchema("gatewayID", idSchema), "params"),
-    existId("gatewayID", "gateway", "params"),
     async (req, res, next) => {
       try {
         const { gatewayID } = req.params;
