@@ -1,7 +1,7 @@
 const boom = require("@hapi/boom");
 const joi = require("@hapi/joi");
 const GatewayModel = require("../../models/gateway.model");
-const { DeviceModel } = require("../../models/device.model");
+const DeviceModel = require("../../models/device.model");
 
 function validate(data, schema) {
   const { error } = schema.validate(data, { abortEarly: false });
