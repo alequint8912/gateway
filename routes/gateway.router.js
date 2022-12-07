@@ -8,8 +8,8 @@ const {
 
 const {
   createGatewayValidationSchema,
-  addDeviceValidationSchema,
   idSchema,
+  addDeviceValidation,
 } = require("../utils/schemas/gateway.schema");
 
 const gatewayAPI = (app) => {
@@ -69,8 +69,7 @@ const gatewayAPI = (app) => {
   router.patch(
     "/:gatewayID/devices",
     validationHandler(createSchema("gatewayID", idSchema), "params"),
-    validationHandler(addDeviceValidationSchema),
-    existId("gatewayID", "gateway", "params"),
+    addDeviceValidation(),
     existId("deviceID", "device", "body"),
     async (req, res, next) => {
       try {

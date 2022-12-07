@@ -6,7 +6,7 @@ class GatewayService {
   }
 
   async getGatewayByID(id) {
-    return await GatewayModel.findById(id);
+    return await GatewayModel.findById(id).populate("devices");
   }
 
   async createGateway(name, address) {
