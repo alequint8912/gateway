@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "e9df5311-630a-48c9-90cd-93d986de3c50",
+		"name": "DEVICE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8337049"
+	},
+	"item": [
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/devices",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/devices/63865bde2b35faa03231716b",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"devices",
+						"63865bde2b35faa03231716b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create device",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vendor\": \"vendor16\",\n    \"createdDate\": \"2022-12-13\",\n    \"status\": \"online\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/devices",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"devices"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

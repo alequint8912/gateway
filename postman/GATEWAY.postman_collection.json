@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "3e2bf434-8386-4f99-9cbb-921cd4adf11e",
+		"name": "GATEWAY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8337049"
+	},
+	"item": [
+		{
+			"name": "get all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/gateways",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gateways"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/gateways/638f9df33aafa62677c965c9",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gateways",
+						"638f9df33aafa62677c965c9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create gateway",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"gateway 5\",\n    \"address\": \"192.168.72.6\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/gateways",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gateways"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add device",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"action\": \"add\",\n    \"deviceID\": \"6390a71484086cc2c73e4764\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/gateways/6390a37684086cc2c73e474f/devices",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gateways",
+						"6390a37684086cc2c73e474f",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remove device",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"action\": \"remove\",\n    \"deviceID\": \"638e01ad038ed6f23c82e27e\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/gateways/638f9df33aafa62677c965c9/devices",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gateways",
+						"638f9df33aafa62677c965c9",
+						"devices"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
