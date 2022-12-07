@@ -29,18 +29,4 @@ describe("services - gateways", () => {
     });
   });
 
-  describe("When getGatewaysById is called", async () => {
-    it("should call the findById GatewayModel method", async () => {
-      await gatewaysService.getGatewayByID();
-      assert.strictEqual(findByIdStub.called, true);
-    });
-
-    it("should return a single gateway", async () => {
-      const result = await gatewaysService.getGatewayByID(
-        "63877a26e3ed08ef300d50c1"
-      );
-      const expected = gatewaysMocks[gatewaysMocks.length - 1];
-      assert.deepEqual(result, expected);
-    });
-  });
 });
